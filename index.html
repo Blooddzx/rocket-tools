@@ -107,6 +107,7 @@
             padding: 20px;
             transition: 0.3s;
             position: relative;
+            cursor: pointer;
         }
 
         .feature:hover {
@@ -191,16 +192,146 @@
             font-size: 0.9rem;
         }
 
+        /* МОДАЛЬНОЕ ОКНО */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #12122a;
+            border: 2px solid #ffb800;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(255, 180, 0, 0.4);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .modal h2 {
+            color: #ffb800;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffb800;
+            margin-bottom: 20px;
+        }
+
+        .modal-features {
+            text-align: left;
+            color: #ccc;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .modal-features li {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        .modal-features li::before {
+            content: "✅ ";
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            display: block;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            background: linear-gradient(135deg, #ffb800, #ff6b00);
+            transition: 0.3s;
+        }
+
+        .modal-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .modal-close {
+            margin-top: 20px;
+            background: transparent;
+            border: 1px solid #555;
+            color: #aaa;
+            padding: 10px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            border-color: #ffb800;
+            color: #ffb800;
+        }
+
         @media (max-width: 650px) {
             .container { padding: 30px 20px; }
             h1 { font-size: 1.8rem; }
             .features { grid-template-columns: 1fr; }
             .btn { display: block; width: 100%; margin: 10px 0; }
+            .modal-content { padding: 25px 20px; }
         }
     </style>
 </head>
 <body>
     <div class="glow-border"></div>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div class="modal" id="nukerModal">
+        <div class="modal-content">
+            <div class="modal-icon">💥</div>
+            <h2>ROCKET NUKER</h2>
+            <div class="modal-price">500 ₽</div>
+            <ul class="modal-features">
+                <li>Полная зачистка серверов</li>
+                <li>Скрытый режим (медленная атака)</li>
+                <li>Автовосстановление после бана</li>
+                <li>Поддержка в Discord</li>
+                <li>Пожизненные обновления</li>
+            </ul>
+            <div class="modal-buttons">
+                <a href="#" class="modal-btn" onclick="alert('Скоро в продаже! Следите за обновлениями.')">Купить на Playerok</a>
+                <a href="#" class="modal-btn" onclick="alert('Скоро в продаже! Следите за обновлениями.')">Купить на FunPay</a>
+                <a href="#" class="modal-btn" onclick="alert('Скоро в продаже! Следите за обновлениями.')">Купить на Lolzteam</a>
+            </div>
+            <button class="modal-close" onclick="document.getElementById('nukerModal').classList.remove('active')">Закрыть</button>
+        </div>
+    </div>
 
     <div class="container">
         <div class="logo">🚀</div>
@@ -223,11 +354,11 @@
                 <h3>Rocket Hub</h3>
                 <p>Скрипт-хаб с Fly, ESP, Fling, Noclip, Target и встроенным магазином скриптов. Запуск через Xeno/Velocity.</p>
             </div>
-            <div class="feature">
+            <div class="feature" onclick="document.getElementById('nukerModal').classList.add('active')">
                 <span class="badge">ПЛАТНО</span>
                 <div class="feature-icon">💥</div>
                 <h3>Rocket Nuker</h3>
-                <p>Нюк-бот для Discord. Быстрая зачистка серверов, скрытый режим, автовосстановление.</p>
+                <p>Нюк-бот для Discord. Быстрая зачистка серверов, скрытый режим, автовосстановление. Нажми чтобы узнать больше.</p>
             </div>
             <div class="feature">
                 <span class="badge badge-free">БЕСПЛАТНО</span>
@@ -243,8 +374,8 @@
         </div>
 
         <div class="version">
-            Версия 10.1 | © 2026 Rocket Tools | Контакты: rocket-tools0@yandex.ru
+            Версия 10.1 | © 2025 Rocket Tools | Контакты: rocket-tools0@yandex.ru
         </div>
     </div>
 </body>
-</html>
+    </html>
